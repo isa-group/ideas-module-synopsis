@@ -1,0 +1,28 @@
+%Relationships
+
+SimpleBlockStorage: Size SSD Region;
+Size: [1,1] {Size_1 Size_2 Size_3 Size_4 Size_5};
+SSD: [1,1] {SSD_true SSD_false};
+Region: [1,1] {Region_USA Region_EU Region_JP};
+
+%Attributes
+
+SimpleBlockStorage.volumeCostMonth: Real [0.0, 0.05],0,0;
+SimpleBlockStorage.costGBMonth: Real [0.0, 0.15],0,0;
+
+%Constraints
+
+SSD_true == 1 IMPLIES Size_1 == 1 OR Size_2 == 1;
+Size_1 == 1 IMPLIES SimpleBlockStorage.volumeCostMonth == SimpleBlockStorage.costGBMonth * 1;
+Size_2 == 1 IMPLIES SimpleBlockStorage.volumeCostMonth == SimpleBlockStorage.costGBMonth * 2;
+Size_3 == 1 IMPLIES SimpleBlockStorage.volumeCostMonth == SimpleBlockStorage.costGBMonth * 3;
+Size_4 == 1 IMPLIES SimpleBlockStorage.volumeCostMonth == SimpleBlockStorage.costGBMonth * 4;
+Size_5 == 1 IMPLIES SimpleBlockStorage.volumeCostMonth == SimpleBlockStorage.costGBMonth * 5;
+Region_USA == 1 AND SSD_true == 1 IMPLIES SimpleBlockStorage.costGBMonth == 0.1;
+Region_EU == 1 AND SSD_true == 1 IMPLIES SimpleBlockStorage.costGBMonth == 0.12;
+Region_JP == 1 AND SSD_true == 1 IMPLIES SimpleBlockStorage.costGBMonth == 0.15;
+Region_USA == 1 AND SSD_false == 1 IMPLIES SimpleBlockStorage.costGBMonth == 0.05;
+Region_EU == 1 AND SSD_false == 1 IMPLIES SimpleBlockStorage.costGBMonth == 0.06;
+Region_JP == 1 AND SSD_false == 1 IMPLIES SimpleBlockStorage.costGBMonth == 0.08;
+
+

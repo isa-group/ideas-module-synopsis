@@ -1,0 +1,105 @@
+		{
+				id: "hcs-language",
+				extension: "hcs",
+				name: "HCS",
+				formats: [
+				 	{
+				 		format: "hcs",
+				 		editorModeId: "ace/mode/hcs",
+				 		_editorModeURI: "mode-hcs.js",
+				 		editorThemeId: "ace/theme/hcs",
+				 		_editorThemeURI: "theme-hcs.js",
+				 		checkLanguage: "false"
+				 	}
+				],
+				 
+				operations: [
+
+				             {
+				            	 id: "generateAFM",
+				            	 name: "Transform to Feature Model",
+				            	  data: {},
+				            	 _remoteExecution: "false",
+				            	  action: "function(operationStructure, fileUri) {
+							            	  	CommandApi.fetchFileContentsBeforeExecutingOperation(operationStructure, 
+							            	  		fileUri, 'pref', 'generateAFM', 
+							            	  		'Transform to Feature Model', 
+							            	  		'Select a preferences file to get the feature model.', 
+							            	  		'Transform to Feature Model', 
+							            	  		function(result){
+							            	  			newUri = result.fileUri;
+														content = result.data;
+																												
+														if(result.status != 'OK_PROBLEMS'){
+															res = newUri.split('/');
+															filename = res[res.length-1];
+															aux = filename.split('.');
+															name = aux[0];
+															extension = '.'+aux[1];
+															
+															EditorManager.createNode(newUri, name, extension, function(){
+																EditorManager.saveFile(newUri, content, function(){
+																	EditorManager.openFile(newUri);
+																});
+															});
+														}
+							            	  		}, 
+							            	  		function(result){}
+							            	  	)
+							            	}"
+				             },
+				              {
+				            	 id: "generateOPL",
+				            	 name: "Transform to CSP Model",
+				            	  data: {},
+				            	 _remoteExecution: "false",
+				            	  action: "function(operationStructure, fileUri) {
+							            	  	CommandApi.fetchFileContentsBeforeExecutingOperation(operationStructure, 
+							            	  		fileUri, 'pref', 'generateOPL', 
+							            	  		'Transform to CSP Model', 
+							            	  		'Select a valid preferences file to retrieve the CSP model.', 
+							            	  		'Transform to CSP Model', 
+							            	  		function(result){
+							            	  			newUri = result.fileUri;
+														content = result.data;
+																												
+														if(result.status != 'OK_PROBLEMS'){
+															res = newUri.split('/');
+															filename = res[res.length-1];
+															aux = filename.split('.');
+															name = aux[0];
+															extension = '.'+aux[1];
+															
+															EditorManager.createNode(newUri, name, extension, function(){
+																EditorManager.saveFile(newUri, content, function(){
+																	EditorManager.openFile(newUri);
+																});
+															});
+														}
+							            	  		}, 
+							            	  		function(result){}
+							            	  	)
+							            	}"
+				             },
+				             {
+				            	 id: "getOptimalConfiguration",
+				            	 name: "Optimal Configuration",
+				            	 data: {},
+				            	 _remoteExecution: "false",
+				            	 action: "function(operationStructure, fileUri) {
+							            	  	CommandApi.fetchFileContentsBeforeExecutingOperation(operationStructure, 
+							            	  		fileUri, 'pref', 'getOptimalConfiguration', 
+							            	  		'Get Optimal Configuration', 
+							            	  		'Select a valid preferences file to get the optimal configuration.', 
+							            	  		'Get Optimal Configuration', 
+							            	  		function(result){}, 
+							            	  		function(result){}
+							            	  	)
+							            	}"
+				             }
+				             
+				             ],
+				             
+				inspectorLoader: "function(loader, format) {}"
+
+			}

@@ -1,0 +1,53 @@
+%Relationships
+
+VolumeStorage: vol1_SimpleBlockStorage vol2_SimpleBlockStorage;
+vol1_SimpleBlockStorage: vol1_Size vol1_SSD vol1_Region;
+vol1_Size: [1,1] {vol1_Size_1 vol1_Size_2 vol1_Size_3 vol1_Size_4 vol1_Size_5};
+vol1_SSD: [1,1] {vol1_SSD_true vol1_SSD_false};
+vol1_Region: [1,1] {vol1_Region_USA vol1_Region_EU vol1_Region_JP};
+vol2_SimpleBlockStorage: vol2_Size vol2_SSD vol2_Region;
+vol2_Size: [1,1] {vol2_Size_1 vol2_Size_2 vol2_Size_3 vol2_Size_4 vol2_Size_5};
+vol2_SSD: [1,1] {vol2_SSD_true vol2_SSD_false};
+vol2_Region: [1,1] {vol2_Region_USA vol2_Region_EU vol2_Region_JP};
+
+%Attributes
+
+VolumeStorage.totalCostMonth: Real [0.0 to 10000.0],0,0;
+VolumeStorage.discount: Real [0.0 to 1000.0],0,0;
+vol1_SimpleBlockStorage.volumeCostMonth: Real [0.0 to 0.05],0,0;
+vol1_SimpleBlockStorage.costGBMonth: Real [0.0 to 0.15],0,0;
+vol2_SimpleBlockStorage.volumeCostMonth: Real [0.0 to 0.05],0,0;
+vol2_SimpleBlockStorage.costGBMonth: Real [0.0 to 0.15],0,0;
+
+%Constraints
+
+vol1_Size_1 == 1 IMPLIES vol1_SimpleBlockStorage.volumeCostMonth == vol1_SimpleBlockStorage.costGBMonth * 1;
+vol1_Size_2 == 1 IMPLIES vol1_SimpleBlockStorage.volumeCostMonth == vol1_SimpleBlockStorage.costGBMonth * 2;
+vol1_Size_3 == 1 IMPLIES vol1_SimpleBlockStorage.volumeCostMonth == vol1_SimpleBlockStorage.costGBMonth * 3;
+vol1_Size_4 == 1 IMPLIES vol1_SimpleBlockStorage.volumeCostMonth == vol1_SimpleBlockStorage.costGBMonth * 4;
+vol1_Size_5 == 1 IMPLIES vol1_SimpleBlockStorage.volumeCostMonth == vol1_SimpleBlockStorage.costGBMonth * 5;
+vol2_Size_1 == 1 IMPLIES vol2_SimpleBlockStorage.volumeCostMonth == vol2_SimpleBlockStorage.costGBMonth * 1;
+vol2_Size_2 == 1 IMPLIES vol2_SimpleBlockStorage.volumeCostMonth == vol2_SimpleBlockStorage.costGBMonth * 2;
+vol2_Size_3 == 1 IMPLIES vol2_SimpleBlockStorage.volumeCostMonth == vol2_SimpleBlockStorage.costGBMonth * 3;
+vol2_Size_4 == 1 IMPLIES vol2_SimpleBlockStorage.volumeCostMonth == vol2_SimpleBlockStorage.costGBMonth * 4;
+vol2_Size_5 == 1 IMPLIES vol2_SimpleBlockStorage.volumeCostMonth == vol2_SimpleBlockStorage.costGBMonth * 5;
+vol1_Region_USA == 1 AND vol1_SSD_true == 1 IMPLIES vol1_SimpleBlockStorage.costGBMonth == 0.1;
+vol1_Region_EU == 1 AND vol1_SSD_true == 1 IMPLIES vol1_SimpleBlockStorage.costGBMonth == 0.12;
+vol1_Region_JP == 1 AND vol1_SSD_true == 1 IMPLIES vol1_SimpleBlockStorage.costGBMonth == 0.15;
+vol1_Region_USA == 1 AND vol1_SSD_false == 1 IMPLIES vol1_SimpleBlockStorage.costGBMonth == 0.05;
+vol1_Region_EU == 1 AND vol1_SSD_false == 1 IMPLIES vol1_SimpleBlockStorage.costGBMonth == 0.06;
+vol1_Region_JP == 1 AND vol1_SSD_false == 1 IMPLIES vol1_SimpleBlockStorage.costGBMonth == 0.08;
+vol2_Region_USA == 1 AND vol2_SSD_true == 1 IMPLIES vol2_SimpleBlockStorage.costGBMonth == 0.1;
+vol2_Region_EU == 1 AND vol2_SSD_true == 1 IMPLIES vol2_SimpleBlockStorage.costGBMonth == 0.12;
+vol2_Region_JP == 1 AND vol2_SSD_true == 1 IMPLIES vol2_SimpleBlockStorage.costGBMonth == 0.15;
+vol2_Region_USA == 1 AND vol2_SSD_false == 1 IMPLIES vol2_SimpleBlockStorage.costGBMonth == 0.05;
+vol2_Region_EU == 1 AND vol2_SSD_false == 1 IMPLIES vol2_SimpleBlockStorage.costGBMonth == 0.06;
+vol2_Region_JP == 1 AND vol2_SSD_false == 1 IMPLIES vol2_SimpleBlockStorage.costGBMonth == 0.08;
+VolumeStorage.totalCostMonth == vol1_SimpleBlockStorage.volumeCostMonth + vol2_SimpleBlockStorage.volumeCostMonth;
+VolumeStorage.totalCostMonth > 3000 IMPLIES VolumeStorage.discount == VolumeStorage.totalCostMonth * 0.1;
+vol1_Size_4 == 1;
+vol1_Region_USA == 1;
+vol2_Size_3 == 1 OR vol2_Size_4 == 1 OR vol2_Size_5 == 1;
+vol2_SSD_true == 1;
+
+

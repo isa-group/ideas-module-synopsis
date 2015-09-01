@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>es.us.isa.ideas.module</groupId>
+		<artifactId>IDEAS-synopsis-module</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>es.us.isa.ideas.module.synopsis</groupId>
+	<artifactId>ideas-synopsis-common</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
+
+	<!-- Properties -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!--- VERSIONING -->
+		<java.version>1.7</java.version>
+		<ideas.version>0.0.1-SNAPSHOT</ideas.version>
+		<aml.version>0.3</aml.version>
+	</properties>
+
+	<repositories>
+
+		<repository>
+			<id>org.springframework.maven.release</id>
+			<name>Spring Maven Release Repository</name>
+			<url>http://repo.springsource.org/release</url>
+		</repository>
+
+		<repository>
+			<id>central</id>
+			<url>http://repo.maven.apache.org/maven2</url>
+		</repository>
+
+		<!-- IDEAS repository -->
+		<repository>
+			<id>ideas</id>
+			<url>http://clinker.isagroup.es/nexus/content/repositories/ideas</url>
+		</repository>
+
+		<repository>
+			<id>clinker-fama</id>
+			<name>clinker-fama</name>
+			<url>http://clinker.isagroup.es/nexus/content/repositories/fama/</url>
+		</repository>
+
+	</repositories>
+
+	<dependencies>
+
+		<!-- IDEAS Dependencies -->
+		<dependency>
+			<groupId>es.us.isa.ideas</groupId>
+			<artifactId>ideas-core</artifactId>
+			<version>${ideas.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.us.isa</groupId>
+			<artifactId>AML</artifactId>
+			<version>${aml.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.us.isa</groupId>
+			<artifactId>FaMaSDK</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>es.us.isa</groupId>
+			<artifactId>FaMaAttributedModel</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>es.us.isa</groupId>
+			<artifactId>FaMaFeatureModel</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4-runtime</artifactId>
+			<version>4.5</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
