@@ -3,7 +3,6 @@
  */
 package es.us.isa.ideas.synopsis.common;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,12 +28,7 @@ public class AnalyzeDelegate {
 		InputStream in = AnalyzeDelegate.class
 				.getResourceAsStream("/config.json");
 		String config = Util.getStringFromInputStream(in);
-
-		try {
-			Config.loadConfig(config);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		Config.load(config);
 	}
 
 	public static AppResponse analize(String id, String content,
