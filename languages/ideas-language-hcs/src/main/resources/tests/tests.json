@@ -1,0 +1,37 @@
+[
+    {
+        "id": "getOptimalConfiguration",
+        "description": "Optimal configuration",
+        "opUri": "/language/operation/getOptimalConfiguration/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "getOptimalConfiguration",
+                    "content": "",
+                    "fileUri": "/tests/resource/hcs/VolumeStorage",
+                    "auxArg0": "/tests/resource/pref/VolumeStorage"
+                },
+        "results": [
+            {
+                "status": "OK",
+                "message": "<pre><b>Optimal Configuration calculated:</b>\nVolumeStorage \n   totalCostMonth = 0.55\n   vol2\n      volumeCostMonth = 0.15\n      costGBMonth = 0.05\n      Size = 3\n      SSD = false\n      Region = USA\n   vol1\n      volumeCostMonth = 0.4\n      costGBMonth = 0.1\n      Size = 4\n      SSD = true\n      Region = USA\n</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/hcs/VolumeStorage",
+                "annotations": null,
+                "customStruct": null
+            },
+            {
+                "status": "OK",
+                "message": "<pre><b>Optimal Configuration calculated:</b>\nVolumeStorage \n   totalCostMonth = 0.55\n   vol1\n      volumeCostMonth = 0.4\n      costGBMonth = 0.1\n      Size = 4\n      SSD = true\n      Region = USA\n   vol2\n      volumeCostMonth = 0.15\n      costGBMonth = 0.05\n      Size = 3\n      SSD = false\n      Region = USA\n</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/hcs/VolumeStorage",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    }
+]
